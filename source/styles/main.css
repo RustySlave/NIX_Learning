@@ -1,0 +1,117 @@
+body{
+    margin: 0;
+}
+header{
+    background-color: black;
+    height: 10vh;
+}
+ul{
+    list-style: none;
+}
+.category-nav{
+    display: inline-block;
+}
+.category-nav a{
+    text-decoration: none;
+    color: #101010;
+    display: inline-block;
+}
+.category-nav a:active{
+    color: #101010;
+}
+.category-nav ul{
+    padding: 0;
+}
+.category-nav li{
+    padding: 8px;
+}
+.category-nav ul li{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "category btn"
+        "subcategories  subcategories";
+}
+.dropdown, .dropdown>li{
+
+    background-color: #f3f3f3;
+    display: none;
+}
+.show-subcategory-btn{
+    opacity: 0;
+    position: absolute;
+}
+.show-subcategory-btn:checked ~ .dropdown{
+    display: inline;
+}
+.burger, .drop-btn{
+    display: flex;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.drop-btn{
+    padding: 0 5px;
+    width: 20px;
+    height: 20px;
+}
+.burger span::before,
+.burger span,
+.burger span::after,
+.drop-btn span,
+.drop-btn span::after{
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #838383;
+}
+.drop-btn span, .drop-btn span::after{
+    width: 11px;
+    height: 2px;
+    background-color: #838383;
+    transform: rotate(45deg);
+}
+.drop-btn span::after{
+    content: '';
+    transform: rotate(90deg);
+    left: 5px;
+    top: -5px;
+}
+.burger span::before,
+.burger span::after{
+    content: '';
+    bottom: -8px;
+}
+.burger span::after{
+    bottom: 8px;
+}
+.show-subcategory-btn:checked ~ .burger > span::before,
+.show-subcategory-btn:checked ~ .burger > span::after{
+    transform: rotate(90deg);
+    bottom: 0;
+}
+.show-subcategory-btn:checked ~ .burger > span{
+    transform: rotate(45deg);
+}
+
+.show-subcategory-btn:checked ~ .drop-btn > span{
+    transform: rotate(225deg);
+    right: -5px;
+}
+.dropdown > li > .dropdown{
+    grid-area: subcategories;
+}
+.btn{
+    padding: 5px;
+    border-radius: 10%;
+}
+.btn:hover{
+    background-color: rgba(58, 188, 255, 0.25);
+}
+.btn:active{
+    background-color: rgba(28, 100, 134, 0.42);
+}

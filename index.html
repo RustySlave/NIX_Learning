@@ -1,10 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html xmlns="http://www.w3.org/1999/html" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>webstore</title>
+    <link href="source/styles/main.css" rel="stylesheet">
 </head>
 <body>
-$END$
-</body>
-</html>
+    <div class="root">
+        <header>
+            <aside>
+                <nav class="category-nav">
+                    <input id="burger-click-flag" class="show-subcategory-btn" type="checkbox">
+                    <label for="burger-click-flag" class="burger">
+                        <span></span>
+                    </label>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="#" class="btn">Category1</a>
+                            <input id="category1-click-flag" class="show-subcategory-btn" type="checkbox">
+                            <label for="category1-click-flag" class="drop-btn">
+                                <span></span>
+                            </label>
+                            <ul class="dropdown">
+                                <li><a href="#" class="btn">Subcategory1.1</a></li>
+                                <li><a href="#" class="btn">Subcategory1.2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="btn">Category2</a>
+                            <input id="category2-click-flag" class="show-subcategory-btn" type="checkbox">
+                            <label for="category2-click-flag" class="drop-btn">
+                                <span></span>
+                            </label>
+                            <ul class="dropdown">
+                                <li><a href="#" class="btn">Subcategory2.1</a></li>
+                                <li><a href="#" class="btn">Subcategory2.2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="btn">Category3</a>
+                            <input id="category3-click-flag" class="show-subcategory-btn" type="checkbox">
+                            <label for="category3-click-flag" class="drop-btn">
+                                <span></span>
+                            </label>
+                            <ul class="dropdown">
+                                <li><a href="#" class="btn">Subcategory3.1</a></li>
+                                <li><a href="#" class="btn">Subcategory3.2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </header>
+        <main>
+
+        </main>
+        <footer></footer>
+    </div>
+
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + '/jb-server-page?reloadServiceClientId=20');
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash 
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script></body></html>
