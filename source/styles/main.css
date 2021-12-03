@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
+
 body{
     margin: 0;
+}
+.root{
+    font-family: sans-serif;
 }
 header{
     background-color: black;
@@ -11,12 +16,12 @@ ul{
 .category-nav{
     display: inline-block;
 }
-.category-nav a{
+a{
     text-decoration: none;
     color: #101010;
     display: inline-block;
 }
-.category-nav a:active{
+a:active{
     color: #101010;
 }
 .category-nav ul{
@@ -24,6 +29,9 @@ ul{
 }
 .category-nav li{
     padding: 8px;
+}
+.category-nav > .dropdown{
+    position: absolute;
 }
 .category-nav ul li{
     display: grid;
@@ -114,4 +122,67 @@ ul{
 }
 .btn:active{
     background-color: rgba(28, 100, 134, 0.42);
+}
+.top-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top-header>section{
+    display: flex;
+    color: #f3f3f3;
+    align-items: center;
+    height: auto;
+    margin: 0 1vh;
+}
+.top-header>section>*{
+    margin: 0 1vw;
+}
+.site-name{
+    font-family: Ubuntu,sans-serif;
+    color: #f3f3f3;
+}
+img.header-top-icon{
+    margin: 1vw;
+    height: 6vh;
+    background-color: #f3f3f3;
+    border-radius: 10%;
+}
+.btn-highlight:hover{
+    box-shadow: 0 0 10px 10px rgba(28, 100, 134, 0.74);;
+    cursor: pointer;
+}
+.user-menu{
+    position: relative;
+}
+.user-bar{
+    display: none;
+    position: absolute;
+    top: 9vh;
+    right: 0;
+    min-width: 200px;
+    min-height: 50px;
+    background-color: #f3f3f3;
+    box-shadow: 0 5px 5px 5px lightgray;
+    padding: 10px;
+}
+.user-bar>*{
+    color: #101010;
+    margin: 10px 0;
+}
+.user-bar a>h2{
+    font-size: 1em;
+    margin: 0;
+    font-weight: normal;
+}
+.user-bar>p{
+    font-style: italic;
+    color: #838383;
+}
+#user-menu-click:checked ~ .user-bar{
+    display: block;
+}
+.user-auth-btns{
+    display: flex;
+    justify-content: space-around;
 }
