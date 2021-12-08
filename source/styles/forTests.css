@@ -1,0 +1,26 @@
+/*
+ *there are some styles for testing new features
+ */
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.green{
+     background-color: green;
+ }
+.black{
+    background-color: black;
+}
+.white{
+    background-color: white;
+}
+/* Temporary styles */
+main>div{
+    height: 200px;
+    width: 100px;
+}
+.carousel-move-btn:hover{
+    box-shadow: 0 0 5px 1px wheat;
+}

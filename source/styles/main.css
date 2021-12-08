@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
-
 body{
     margin: 0;
 }
@@ -32,6 +31,7 @@ a:active{
 }
 .category-nav > .dropdown{
     position: absolute;
+    z-index: 3;
 }
 .category-nav ul li{
     display: grid;
@@ -158,6 +158,7 @@ img.header-top-icon{
 .user-bar{
     display: none;
     position: absolute;
+    z-index: 3;
     top: 9vh;
     right: 0;
     min-width: 200px;
